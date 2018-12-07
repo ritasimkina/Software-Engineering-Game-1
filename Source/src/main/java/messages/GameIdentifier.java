@@ -1,28 +1,26 @@
-package messages;
+package game_client.messages;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-//@XmlRootElement (name = "GameIdentifier")
+
 @XmlRootElement(name = "uniqueGameIdentifier")
-@XmlAccessorType(XmlAccessType.NONE)
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GameIdentifier {
 
-	//@XmlElement(name="UniqueGameID")
-	@XmlElement(name="uniqueGameID")
-	private final String gameID;
+    @XmlElement(name = "uniqueGameID")
+    private String uniqueGameID;
 
-	public GameIdentifier() {
-		this.gameID = "";
-	}
-	
-	public GameIdentifier(String gameID) {
-		this.gameID = gameID;
-	}
+    public String getUniqueGameID() {
+        return uniqueGameID;
+    }
 
-	public String getGameID() {
-		return gameID;
-	}
+    @Override
+    public String toString() {
+        return "GameIdentifier{" +
+                "uniqueGameID='" + uniqueGameID + '\'' +
+                '}';
+    }
 }
