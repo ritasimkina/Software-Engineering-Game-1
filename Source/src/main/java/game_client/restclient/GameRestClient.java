@@ -2,31 +2,28 @@ package game_client.restclient;
 
 import java.util.UUID;
 
-import game_client.exceptions.UserServiceException;
+
 import game_client.messages.*;
 import org.springframework.web.client.RestTemplate;
 
 
 public class GameRestClient {
 
-    public final String SERVER_URI = "http://swe.wst.univie.ac.at:18235";
+    //public final String SERVER_URI = "http://swe.wst.univie.ac.at:18235";
+    String serverUri = "http://swe.wst.univie.ac.at:18235";
 
-    /**
-     * @return gameId message
-     */
+    public GameRestClient(String serverUri) {
+        this.serverUri = serverUri;
+    }
 
     public GameIdentifier createNewGame() {
 
         String endpointURI = "/game/new";
-        System.out.println("createNewGame: " + SERVER_URI + endpointURI);
+        System.out.println("createNewGame: " + serverUri + endpointURI);
 
         RestTemplate restTemplate = new RestTemplate();
-        GameIdentifier gameIdentifier = restTemplate.getForObject(SERVER_URI + endpointURI, GameIdentifier.class);
-        /*if(true){
+        GameIdentifier gameIdentifier = restTemplate.getForObject(serverUri + endpointURI, GameIdentifier.class);
 
-            System.out.println("11111handleUserServiceException!!!!!!!!!!");
-            throw new UserServiceException("MY_EXCEPTION is thrown");
-        }*/
         return gameIdentifier;
     }
 
@@ -37,10 +34,10 @@ public class GameRestClient {
      */
     public ResponseEnvelopePlayerReg registerToGame(GameIdentifier game, PlayerRegistration playerRegistration) {
         String endpointURI = "/game/" + game.getUniqueGameID() + "/register";
-        System.out.println("registerToGame: " + SERVER_URI + endpointURI);
+        System.out.println("registerToGame: " + serverUri + endpointURI);
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEnvelopePlayerReg registrationResponse = restTemplate.postForObject(SERVER_URI + endpointURI, playerRegistration, ResponseEnvelopePlayerReg.class);
+        ResponseEnvelopePlayerReg registrationResponse = restTemplate.postForObject(serverUri + endpointURI, playerRegistration, ResponseEnvelopePlayerReg.class);
 
         return registrationResponse;
     }
@@ -53,10 +50,10 @@ public class GameRestClient {
     public ResponseEnvelope sendHalfOfMap(GameIdentifier game, HalfMap halfMap) {
         String endpointURI = "/game/" + game.getUniqueGameID() + "/halfmap";
 
-        System.out.println("sendHalfOfMap: " + SERVER_URI + endpointURI);
+        System.out.println("sendHalfOfMap: " + serverUri + endpointURI);
 
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(SERVER_URI + endpointURI, halfMap, ResponseEnvelope.class);
+        return restTemplate.postForObject(serverUri + endpointURI, halfMap, ResponseEnvelope.class);
     }
 
 
@@ -69,10 +66,10 @@ public class GameRestClient {
     public GameState getGameState(GameIdentifier game, UUID uniquePlayerID) {
         String endpointURI = "/game/" + game.getUniqueGameID() + "/state/" + uniquePlayerID;
 
-        System.out.println("getGameState: " + SERVER_URI + endpointURI);
+        System.out.println("getGameState: " + serverUri + endpointURI);
 
         RestTemplate restTemplate = new RestTemplate();
-        GameState gameState = restTemplate.getForObject(SERVER_URI + endpointURI, GameState.class);
+        GameState gameState = restTemplate.getForObject(serverUri + endpointURI, GameState.class);
         return gameState;
     }
 
@@ -85,12 +82,12 @@ public class GameRestClient {
 
     public ResponseEnvelope makeMove(GameIdentifier game, UUID uniquePlayerID, String move) {
         String endpointURI = "/game/" + game.getUniqueGameID() + "/move";
-        System.out.println("makeMove: " + SERVER_URI + endpointURI);
+        System.out.println("makeMove: " + serverUri + endpointURI);
 
         AvatarMove avatarMove = new AvatarMove(uniquePlayerID, move);
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEnvelope moveResponse = restTemplate.postForObject(SERVER_URI + endpointURI, avatarMove, ResponseEnvelope.class);
+        ResponseEnvelope moveResponse = restTemplate.postForObject(serverUri + endpointURI, avatarMove, ResponseEnvelope.class);
         return moveResponse;
     }
 

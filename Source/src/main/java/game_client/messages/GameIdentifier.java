@@ -13,6 +13,13 @@ public class GameIdentifier {
     @XmlElement(name = "uniqueGameID")
     private String uniqueGameID;
 
+    public GameIdentifier() {
+    }
+
+    public GameIdentifier(String uniqueGameID) {
+        this.uniqueGameID = uniqueGameID;
+    }
+
     public String getUniqueGameID() {
         return uniqueGameID;
     }

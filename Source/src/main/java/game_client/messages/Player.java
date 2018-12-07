@@ -17,6 +17,7 @@ public class Player {
 
     public static final String SHOULD_ACT_NEXT_STATE = "ShouldActNext";
     public static final String PLAYER_WON_STATE = "Won";
+    public static final String PLAYER_SHOULD_WAIT = "ShouldWait";
 
     public Player() {
     }
