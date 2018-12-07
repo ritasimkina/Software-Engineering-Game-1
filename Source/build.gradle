@@ -5,7 +5,7 @@
  * For more details take a look at the Java Libraries chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.5/userguide/java_library_plugin.html
  */
- 
+
 buildscript {
     repositories {
         mavenCentral()
@@ -36,6 +36,7 @@ repositories {
 dependencies {
 
     compile 'org.springframework.boot:spring-boot-starter-web'
+    //compile files('libs/something_local.jar')
     testCompile 'org.springframework.boot:spring-boot-starter-test'
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
