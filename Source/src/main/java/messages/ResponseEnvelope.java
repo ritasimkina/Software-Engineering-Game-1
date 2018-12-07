@@ -1,59 +1,53 @@
-package messages;
+package game_client.messages;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
 
-@XmlRootElement (name = "responseEnvelope")
+@XmlRootElement(name = "responseEnvelope")
 @XmlAccessorType(XmlAccessType.NONE)
-@XmlSeeAlso({ PlayerIdentifier.class})
-public class ResponseEnvelope<T> {
+public class ResponseEnvelope {
 
-	@XmlElement(name="exceptionMessage")
-	private final String exceptionMessage;
-	
-	@XmlElement(name="exceptionName")
-	private final String exceptionName;
-	
-	@XmlElement(name="state")
-	private final ResponseState state;
-	
-	@XmlElement(name="data")
-	private final T data;
-	
-	public ResponseEnvelope()
-	{
-		state = ResponseState.OK;
-		this.data = null;
+    @XmlElement(name = "exceptionName")
+    private String exceptionName;
 
-		exceptionMessage = "";
-		exceptionName = "";
-	}
-	
-	public ResponseEnvelope(T data)
-	{
-		state = ResponseState.OK;
-		this.data = data;
+    @XmlElement(name = "exceptionMessage")
+    private String exceptionMessage;
 
-		exceptionMessage = "";
-		exceptionName = "";
-	}
+    @XmlElement(name = "state")
+    private String state;
 
-	public String getExceptionMessage() {
-		return exceptionMessage;
-	}
+    public ResponseEnvelope() {
+    }
 
-	public String getExceptionName() {
-		return exceptionName;
-	}
+    public boolean isStateOK() {
+        //return state != null && state.equals("OK");
+        return state != null && state.equals("Okay");
+    }
 
-	public ResponseState getState() {
-		return state;
-	}
+    public String getExceptionName() {
+        return exceptionName;
+    }
 
-	public T getData() {
-		return data;
-	}
+    public void setExceptionName(String exceptionName) {
+        this.exceptionName = exceptionName;
+    }
+
+    public String getExceptionMessage() {
+        return exceptionMessage;
+    }
+
+    public void setExceptionMessage(String exceptionMessage) {
+        this.exceptionMessage = exceptionMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "ResponseEnvelope{" +
+                "exceptionMessage='" + exceptionMessage + '\'' +
+                ", exceptionName='" + exceptionName + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }
