@@ -48,7 +48,7 @@ public class HalfMapService {
     public final int NUMBER_OF_MAP_ROWS;// = 4;
     public final int NUMBER_OF_MAP_COLS;// = 8;
 
-    protected int[][] gameField;
+    int[][] gameField;
 
     public HalfMapService(int mapRows, int mapCols, boolean generateRandomMap) {
         this.NUMBER_OF_MAP_ROWS = mapRows;
@@ -157,7 +157,6 @@ public class HalfMapService {
                 newMapNodes.add(newMapNode);
             }
         }
-
         return new HalfMap(this, newMapNodes, playerID);
     }
 
@@ -221,7 +220,7 @@ public class HalfMapService {
     }
 
     //преобразование цифровых значений игровых клеток в символьные.
-    protected char mapCodeToCharacter(int code) {
+    public static char mapCodeToCharacter(int code) {
 
         switch (code) {
             case GRASS_TILE:

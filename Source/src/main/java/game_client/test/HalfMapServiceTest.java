@@ -2,9 +2,13 @@ package game_client.test;
 
 
 
+import game_client.messages.HalfMap;
 import game_client.service.HalfMapService;
 import org.junit.Test;
 
+import java.util.UUID;
+
+import static game_client.service.HalfMapService.*;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertEquals;
 
@@ -21,9 +25,9 @@ public class HalfMapServiceTest {
 			 int[][] gameField = map.getGameField();
 			 for(int row = 0; row < map.getMapRows(); row++) {
 				 for(int col = 0; col < map.getMapCols(); col++) {
-					 if(gameField[row][col] == HalfMapService.GRASS_TILE)
+					 if(gameField[row][col] == GRASS_TILE)
 						grassTileCount++;
-					 else if(gameField[row][col] == HalfMapService.WATER_TILE)
+					 else if(gameField[row][col] == WATER_TILE)
 						waterTileCount++;
 					 else if(gameField[row][col] == HalfMapService.MOUNTAIN_TILE)
 						mountainTileCount++;
@@ -38,16 +42,55 @@ public class HalfMapServiceTest {
 	 
 	 @Test
 	 public void mapFieldToTerrainCodeGrass(){
-		 assertEquals("Grass", HalfMapService.mapTerrainXMLFieldToTerrainCode(HalfMapService.GRASS_TILE));
+		 assertEquals("Grass", HalfMapService.mapTerrainXMLFieldToTerrainCode(GRASS_TILE));
 	 }
 	 
 	 @Test
 	 public void mapFieldToTerrainCodeWater(){
-		 assertEquals("Water", HalfMapService.mapTerrainXMLFieldToTerrainCode(HalfMapService.WATER_TILE));
+		 assertEquals("Water", HalfMapService.mapTerrainXMLFieldToTerrainCode(WATER_TILE));
 	 }
 	 
 	 @Test
 	 public void mapFieldToTerrainCodeMountain(){
 		 assertEquals("Mountain", HalfMapService.mapTerrainXMLFieldToTerrainCode(HalfMapService.MOUNTAIN_TILE));
 	 }
+
+
+
+	@Test
+	public void setAndGetTileTest(){
+		HalfMapService hms = new HalfMapService(4,8,false);
+		hms.setTile(0,0,WATER_TILE);
+		assertEquals(WATER_TILE,hms.getTile(0,0));
+	}
+
+
+	@Test
+	public void generateHalfMapObjectTest(){
+		UUID playerID = UUID.fromString("ada369fb-5673-4df0-88f1-dd54d0a109b7");
+		HalfMapService hms = new HalfMapService(4,8,false);
+		HalfMap hm = hms.generateHalfMapObject(playerID);
+
+		assertEquals(playerID,hm.getUniquePlayerID());
+	}
+
+
+
+
+
+
+	@Test
+	public void mapCodeToCharacterGrass(){
+		assertEquals(GRASS_CHARACTER, HalfMapService.mapCodeToCharacter(GRASS_TILE));
+	}
+
+	@Test
+	public void mapCodeToCharacterWater(){
+		assertEquals(WATER_CHARACTER, HalfMapService.mapCodeToCharacter(WATER_TILE));
+	}
+
+	@Test
+	public void mapCodeToCharacterMountain(){
+		assertEquals(MOUNTAIN_CHARACTER, HalfMapService.mapCodeToCharacter(MOUNTAIN_TILE));
+	}
 }
