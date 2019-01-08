@@ -1,0 +1,65 @@
+def urlFile = { url, name ->
+    File file = new File("$buildDir/download/${name}.jar")
+    file.parentFile.mkdirs()
+    if (!file.exists()) {
+        new URL(url).withInputStream { downloadStream ->
+            file.withOutputStream { fileOut ->
+                fileOut << downloadStream
+            }
+        }
+    }
+    files(file.absolutePath)
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE")
+    }
+}
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'server_swe'
+    version =  '1.0.0'
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    jcenter()
+    mavenCentral()
+
+ 	ivy {
+        url 'https://git01lab.cs.univie.ac.at/'
+        layout 'pattern', {
+            artifact '/[organisation]/[module]/raw/6f662789bb240ea50f131dcaac259890e0d8124d/[revision].[ext]'
+        }
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+
+	// Use Spring
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    
+    // Use LogBack
+    compile group: 'org.slf4j', name:'slf4j-api', version: '1.7.2'
+    compile group: 'ch.qos.logback', name:'logback-classic', version: '1.0.9'
+    compile group: 'ch.qos.logback', name:'logback-core', version: '1.0.9'
+    
+    // Network Messages
+    compile urlFile('https://drive.google.com/uc?export=download&id=1EdwnNktIFc3sRZmMCWeR1RY_W29ZJI5N', 'swe_messages-1.0.2')
+}
