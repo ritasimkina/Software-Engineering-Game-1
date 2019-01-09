@@ -52,6 +52,8 @@ nb-configuration.xml
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+# Problem statement etc.
+*.pdf
 
 # Created by https://www.gitignore.io/api/java,linux,macos,gradle,intellij,eclipse
 # Edit at https://www.gitignore.io/?templates=java,linux,macos,gradle,intellij,eclipse
