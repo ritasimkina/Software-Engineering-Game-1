@@ -1,5 +1,6 @@
 package Main;
 
+import java.net.MalformedURLException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ public class MainServer {
    * otherwise the port would already be recognized to be in use. You can do this in the debug screen, select the server instance and press the red
    * stop button in the toolbar.*/
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws MalformedURLException {
     SpringApplication.run(MainServer.class, args);
   }
 }

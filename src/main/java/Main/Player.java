@@ -1,80 +1,73 @@
 package Main;
 
+import MessagesGameState.PlayerState;
+
 public class Player {
-  private String lastName;
+  private Position position;
+  private Position treasure;
+  private Position fort;
+  private PlayerState state;
+  private Player enemy;
+  private int index;
+  private boolean halfMapRegistered = false;
 
-  private String studentID;
-
-  private String state;
-
-  private String collectedTreasure;
-
-  private String uniquePlayerID;
-
-  private String firstName;
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getStudentID() {
-    return studentID;
-  }
-
-  public void setStudentID(String studentID) {
-    this.studentID = studentID;
-  }
-
-  public String getState() {
-    return state;
-  }
-
-  public void setState(String state) {
+  public Player(PlayerState state) {
     this.state = state;
   }
 
-  public String getCollectedTreasure() {
-    return collectedTreasure;
+  public Position getPosition() {
+    return position;
   }
 
-  public void setCollectedTreasure(String collectedTreasure) {
-    this.collectedTreasure = collectedTreasure;
+  public void setPosition(Position position) {
+    this.position = position;
   }
 
-  public String getUniquePlayerID() {
-    return uniquePlayerID;
+  public Position getTreasure() {
+    return treasure;
   }
 
-  public void setUniquePlayerID(String uniquePlayerID) {
-    this.uniquePlayerID = uniquePlayerID;
+  public void setTreasure(Position treasure) {
+    this.treasure = treasure;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public Position getFort() {
+    return fort;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setFort(Position fort) {
+    this.fort = fort;
   }
 
-  @Override
-  public String toString() {
-    return "ClassPojo [lastName = "
-        + lastName
-        + ", studentID = "
-        + studentID
-        + ", state = "
-        + state
-        + ", collectedTreasure = "
-        + collectedTreasure
-        + ", uniquePlayerID = "
-        + uniquePlayerID
-        + ", firstName = "
-        + firstName
-        + "]";
+  public PlayerState getState() {
+    return state;
+  }
+
+  public void setState(PlayerState state) {
+    this.state = state;
+  }
+
+  public Player getEnemy() {
+    return enemy;
+  }
+
+  public void setEnemy(Player enemy) {
+    this.enemy = enemy;
+  }
+
+  public int getIndex() {
+    return index;
+  }
+
+  public void setIndex(int index) {
+    this.index = index;
+  }
+
+  public boolean isHalfMapRegistered() {
+    return halfMapRegistered;
+  }
+
+  public void setHalfMapRegistered() {
+    this.halfMapRegistered = true;
   }
 }
