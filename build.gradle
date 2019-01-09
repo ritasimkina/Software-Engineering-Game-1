@@ -68,6 +68,11 @@ dependencies {
     compile urlFile('https://drive.google.com/uc?export=download&id=1EdwnNktIFc3sRZmMCWeR1RY_W29ZJI5N', 'swe_messages-1.0.2')
 }
 
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
+    gradleVersion = '5.0'
+}
+
 spotless {
     java {
         googleJavaFormat()
