@@ -3,59 +3,57 @@ package Main;
 import MessagesBase.HalfMap;
 import MessagesBase.UniqueGameIdentifier;
 
-public class Data
-{
-    private UniqueGameIdentifier gameStateId;
+public class Data {
+  private UniqueGameIdentifier gameStateId;
 
-    private String player1;
-    
-    private String player2;
+  private String player1;
 
-    private HalfMap map;
+  private String player2;
 
-    public UniqueGameIdentifier getGameStateId ()
-    {
-        return gameStateId;
-    }
+  private HalfMap map;
 
-    public void setGameStateId (UniqueGameIdentifier gameIdentifier)
-    {
-        this.gameStateId = gameIdentifier;
-    }
+  public UniqueGameIdentifier getGameStateId() {
+    return gameStateId;
+  }
 
-    public String getPlayer1 ()
-    {
-        return player1;
-    }
+  public void setGameStateId(UniqueGameIdentifier gameIdentifier) {
+    this.gameStateId = gameIdentifier;
+  }
 
-    public void setPlayer1 (String string)
-    {
-        this.player1 = string;
-    }
-    
-    public String getPlayer2 ()
-    {
-        return player2;
-    }
+  public String getPlayer1() {
+    return player1;
+  }
 
-    public void setPlayer2 (String string)
-    {
-        this.player2 = string;
-    }
+  public void setPlayer1(String string) {
+    this.player1 = string;
+  }
 
-    public HalfMap getMap ()
-    {
-        return map;
-    }
+  public String getPlayer2() {
+    return player2;
+  }
 
-    public void setMap (HalfMap halfMap)
-    {
-        this.map = halfMap;
-    }
+  public void setPlayer2(String string) {
+    this.player2 = string;
+  }
 
-    @Override
-    public String toString()
-    {
-        return "[gameStateId = "+gameStateId+", player1 = "+player1+", player2 = "+player2+", map = "+map+"]";
-    }
+  public HalfMap getMap() {
+    return map;
+  }
+
+  public void setMap(HalfMap halfMap) {
+    this.map = halfMap;
+  }
+
+  @Override
+  public String toString() {
+    return "[gameStateId = "
+        + gameStateId
+        + ", player1 = "
+        + player1
+        + ", player2 = "
+        + player2
+        + ", map = "
+        + map
+        + "]";
+  }
 }
