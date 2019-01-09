@@ -44,10 +44,10 @@ public class ServerEndpoints {
   )
   public @ResponseBody UniqueGameIdentifier newGame() {
 
-    // set showExeptionHandling to true to test/play around with exception handling (see the method
+    // set showExceptionHandling to true to test/play around with exception handling (see the method
     // at the bottom)
-    boolean showExeptionHandling = false;
-    if (showExeptionHandling) {
+    boolean showExceptionHandling = false;
+    if (showExceptionHandling) {
       throw new GenericExampleException("Name: Something", "Message: went totally wrong");
     }
 
@@ -89,8 +89,7 @@ public class ServerEndpoints {
     Main.PlayerRegistration translate = new Main.PlayerRegistration(firstName, lastName, studentID);
 
     GameStateVerification.registerNextPlayer(translate, newPlayerID);
-    ResponseEnvelope<UniquePlayerIdentifier> playerIDMessage = new ResponseEnvelope<>(newPlayerID);
-    return playerIDMessage;
+    return new ResponseEnvelope<>(newPlayerID);
 
     // note you will need to include additional logic, e.g., additional classes which create, store,
     // validate, etc. player ids and incoming game ids
@@ -117,15 +116,13 @@ public class ServerEndpoints {
     // System.out.println("fetched ID halfmap: " +halfMap.getNodes());
 
     Main.ResponseEnvelope returnStatus = GameStateVerification.registerHalfMap(halfMap);
-    // System.out.println("Resturn status: " + returnStatus);
+    // System.out.println("Return status: " + returnStatus);
 
     if (returnStatus.getExceptionMessage() != null) {
       throw new GenericExampleException("Registration failed", "Please try again");
     }
 
-    ResponseEnvelope<HalfMap> playerHMMessage = new ResponseEnvelope<>();
-
-    return playerHMMessage;
+    return new ResponseEnvelope<>();
   }
 
   @RequestMapping(

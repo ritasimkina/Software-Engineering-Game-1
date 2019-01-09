@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Arrays;
+
 public class Players {
   private Player[] player;
 
@@ -13,6 +15,6 @@ public class Players {
 
   @Override
   public String toString() {
-    return "ClassPojo [player = " + player + "]";
+    return "ClassPojo [player = " + Arrays.toString(player) + "]";
   }
 }

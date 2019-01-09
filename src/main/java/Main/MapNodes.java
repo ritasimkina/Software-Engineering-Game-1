@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Arrays;
+
 public class MapNodes {
   private MapNode[] mapNode;
 
@@ -13,6 +15,6 @@ public class MapNodes {
 
   @Override
   public String toString() {
-    return "ClassPojo [mapNode = " + mapNode + "]";
+    return "ClassPojo [mapNode = " + Arrays.toString(mapNode) + "]";
   }
 }

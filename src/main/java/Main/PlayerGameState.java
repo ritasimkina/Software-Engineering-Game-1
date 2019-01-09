@@ -7,5 +7,5 @@ public enum PlayerGameState {
   Won,
   Lost,
   ShouldActNext,
-  ShouldWait;
+  ShouldWait
 }

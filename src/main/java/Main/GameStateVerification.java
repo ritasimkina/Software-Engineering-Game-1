@@ -26,7 +26,7 @@ public class GameStateVerification {
   public static HalfMap playerHalfMap0;
   public static HalfMap playerHalfMap1;
 
-  static List<PlayerState> players = new ArrayList<PlayerState>();
+  static List<PlayerState> players = new ArrayList<>();
   static Data finalData = new Data();
 
   public static PlayerState player;
@@ -64,7 +64,6 @@ public class GameStateVerification {
       }
       playerRegistration0 = registration;
       MessagesGameState.PlayerGameState state = MessagesGameState.PlayerGameState.Won;
-      boolean collectedTreasure = true;
       PlayerState player =
           new PlayerState(
               registration.getStudentFirstName(),
@@ -72,7 +71,7 @@ public class GameStateVerification {
               registration.getStudentID(),
               state,
               newPlayerID,
-              collectedTreasure);
+              true);
       players.add(player);
       LOGGER.log(Level.INFO, player.getUniquePlayerID() + "    Registered first player.");
       return playerRegistrationResponse0 = new ResponseEnvelope(null, null, States.OK);
@@ -88,7 +87,6 @@ public class GameStateVerification {
 
       playerRegistration1 = registration;
       MessagesGameState.PlayerGameState state = MessagesGameState.PlayerGameState.Won;
-      boolean collectedTreasure = true;
       PlayerState player =
           new PlayerState(
               registration.getStudentFirstName(),
@@ -96,12 +94,12 @@ public class GameStateVerification {
               registration.getStudentID(),
               state,
               newPlayerID,
-              collectedTreasure);
+              true);
       players.add(player);
       LOGGER.log(Level.INFO, player.getUniquePlayerID() + "    Registered second player.");
       return playerRegistrationResponse1 = new ResponseEnvelope(null, null, States.OK);
     } else {
-      LOGGER.log(Level.WARNING, "Registration to full game has occured!");
+      LOGGER.log(Level.WARNING, "Registration to full game has occurred!");
       return new ResponseEnvelope(
           Exceptions.TOO_MANY_PLAYERS, "Game has already enough (two) players!", States.ERROR);
     }
@@ -159,9 +157,7 @@ public class GameStateVerification {
     Optional<FullMap> optional = Optional.of(fullmap);
     HalfMap map = finalData.getMap();
 
-    GameState gameState =
-        new GameState(optional, players, finalData.getGameStateId().getUniqueGameID());
     // LOGGER.log(Level.INFO, "gameState" + gameState);
-    return gameState;
+    return new GameState(optional, players, finalData.getGameStateId().getUniqueGameID());
   }
 }

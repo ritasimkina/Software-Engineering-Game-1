@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 
 @XmlRootElement(name = "uniqueGameIdentifier")
 @XmlAccessorType(value = XmlAccessType.NONE)
@@ -50,11 +51,6 @@ public final class UniqueGameIdentifier {
       return false;
     }
     UniqueGameIdentifier other = (UniqueGameIdentifier) obj;
-    if (this.uniqueGameID == null
-        ? other.uniqueGameID != null
-        : !this.uniqueGameID.equals(other.uniqueGameID)) {
-      return false;
-    }
-    return true;
+    return Objects.equals(this.uniqueGameID, other.uniqueGameID);
   }
 }

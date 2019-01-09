@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public final class FullMap {
   @XmlElementWrapper(name = "mapNodes")
   @XmlElement(name = "mapNode")
-  private final List<FullMapNode> mapNodes = new ArrayList();
+  private final List<FullMapNode> mapNodes = new ArrayList<>();
 
   public FullMap() {}
 
