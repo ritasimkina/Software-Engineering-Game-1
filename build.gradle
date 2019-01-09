@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     id 'com.diffplug.gradle.spotless' version '3.16.0'
+    id 'com.gradle.build-scan' version '2.0.2'
 }
 
 // Apply the java plugin to add support for Java
@@ -41,7 +42,7 @@ repositories {
 
     ivy {
         url 'https://git01lab.cs.univie.ac.at/'
-        layout 'pattern', {
+        patternLayout {
             artifact '/[organisation]/[module]/raw/6f662789bb240ea50f131dcaac259890e0d8124d/[revision].[ext]'
         }
     }
@@ -51,7 +52,6 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-
     // Use Spring
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -76,6 +76,11 @@ wrapper {
 spotless {
     java {
         googleJavaFormat()
-        removeUnusedImports() // removes any unused imports
+        removeUnusedImports()
     }
+}
+
+buildScan {
+    termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+    termsOfServiceAgree = 'yes'
 }
