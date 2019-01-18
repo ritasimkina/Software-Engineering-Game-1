@@ -55,6 +55,7 @@ public class ServerEndpoints {
   )
   public @ResponseBody ResponseEnvelope<UniquePlayerIdentifier> registerPlayer(
       @PathVariable String gameID, @Validated @RequestBody PlayerRegistration playerRegistration) {
+
     return new ResponseEnvelope<>(GameInformation.getInstance(gameID).register(playerRegistration));
     // note you will need to include additional logic, e.g., additional classes which create, store,
     // validate, etc. player ids and incoming game ids
@@ -102,10 +103,10 @@ public class ServerEndpoints {
 
   Ask yourself: Why is handling the exceptions in a different method than the endpoint methods a good solution? */
   @ExceptionHandler({GameException.class})
-  public @ResponseBody ResponseEnvelope<?> handleException(
-      GameException ex, HttpServletResponse response) {
-    ResponseEnvelope<?> result = new ResponseEnvelope<>(ex);
-    response.setStatus(200);
-    return result;
+    public @ResponseBody ResponseEnvelope<?> handleException(
+            GameException ex, HttpServletResponse response) {
+      ResponseEnvelope<?> result = new ResponseEnvelope<>(ex);
+      response.setStatus(200);
+      return result;
   }
 }
