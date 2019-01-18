@@ -89,6 +89,11 @@ public class GameInformation {
     long mountainCount =
         halfMap.getNodes().stream().map(x -> x.getTerrain().equals(Terrain.Mountain)).count();
 
+    if(waterCount<4) throw new GameException(GameException.NOT_ENOUGH_WATER, "Not enough water");
+    if(mountainCount<3) throw new GameException(GameException.NOT_ENOUGH_MOUNTAIN, "Not enough mountain");
+    if(grassCount<15) throw new GameException(GameException.NOT_ENOUGH_GRASS, "Not enough grass");
+
+
     // TODO: Check that counts are within limits.
 
     Optional<HalfMapNode> fort =
