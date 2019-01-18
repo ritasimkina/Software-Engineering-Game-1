@@ -24,6 +24,7 @@ public class GameException extends RuntimeException {
     public static final String MULTIPLE_FORTS_DEFINED = "MULTIPLE_FORTS_DEFINED";
     public static final String NO_FORT_DEFINED = "NO_FORT_DEFINED";
     public static final String MAP_NOT_DEFINED_COMPLETELY = "MAP_NOT_DEFINED_COMPLETELY";
+    public static final String WATER_ON_EDGES = "WATER_ON_EDGES";
 
     public static final String NOT_ENOUGH_GRASS = "NOT_ENOUGH_GRASS";
     public static final String NOT_ENOUGH_WATER = "NOT_ENOUGH_WATER";
